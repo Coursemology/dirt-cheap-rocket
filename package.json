@@ -1,0 +1,29 @@
+{
+  "name": "dirt-cheap-rocket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "serve": "node bin/dirt-cheap-rocket.cjs",
+    "build:standalone": "pkg . --compress Brotli",
+    "build:cjs": "esbuild index.js --bundle --outfile=bin/dirt-cheap-rocket.cjs --format=cjs --platform=node --minify"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "http-proxy": "^1.18.1"
+  },
+  "pkg": {
+    "scripts": "src/index.js",
+    "targets": [
+      "node16-linux-x64",
+      "node16-macos-arm64"
+    ],
+    "outputPath": "bin"
+  },
+  "devDependencies": {
+    "esbuild": "^0.18.17",
+    "pkg": "^5.8.1"
+  }
+}
