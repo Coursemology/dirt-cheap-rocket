@@ -133,3 +133,6 @@ dist
 
 # builds
 bin/**/*
+
+# Node version
+.node-version
