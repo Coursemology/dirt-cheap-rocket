@@ -30,6 +30,8 @@ proxy.on("error", (error, req, res) => {
 app.use(PUBLIC_PATH, express.static(ASSETS_DIR));
 
 app.all("/*", (req, res) => {
+  console.log("request: ", req);
+  console.log("res: ", res);
   if (req.query?.format === "json") {
     proxy.web(req, res, {
       target: `http://${req.hostname}:${SERVER_PORT}`,
