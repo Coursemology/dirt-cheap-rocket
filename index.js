@@ -3,8 +3,10 @@ const httpProxy = require("http-proxy");
 
 const CLIENT_PORT = process.env.DCR_CLIENT_PORT;
 const SERVER_PORT = process.env.DCR_SERVER_PORT;
-const PUBLIC_PATH = process.env.DCR_PUBLIC_PATH;
 const ASSETS_DIR = process.env.DCR_ASSETS_DIR;
+
+let PUBLIC_PATH = process.env.DCR_PUBLIC_PATH;
+if (!PUBLIC_PATH.startsWith("/")) PUBLIC_PATH = `/${PUBLIC_PATH}`;
 
 const app = express();
 
