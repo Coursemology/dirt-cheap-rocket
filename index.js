@@ -31,8 +31,16 @@ proxy.on("error", (error, req, res) => {
 
 app.use(PUBLIC_PATH, express.static(ASSETS_DIR));
 
+const proxyIf = [
+  (request) => request.query.format === "json",
+  (request) => request.url.startsWith("/downloads"),
+  (request) => request.url.startsWith("/uploads"),
+  (request) => request.url.startsWith("/attachments"),
+  (request) => request.url.startsWith("/oauth"),
+];
+
 app.all("/*", (req, res) => {
-  if (req.query?.format === "json") {
+  if (proxyIf.some((shouldProxy) => shouldProxy(req))) {
     proxy.web(req, res, {
       target: `http://${req.hostname}:${SERVER_PORT}`,
     });
