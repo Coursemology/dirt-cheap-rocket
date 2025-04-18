@@ -52,5 +52,5 @@ app.all("/*", (req, res) => {
 app.listen(CLIENT_PORT, () => {
   console.log(`App accessible on port ${CLIENT_PORT}`);
   console.log(`JSON requests proxied to port ${SERVER_PORT}`);
-  console.log(`Static files served at :${CLIENT_PORT}/static`);
+  console.log(`Static files served at :${CLIENT_PORT}${PUBLIC_PATH}`);
 });
